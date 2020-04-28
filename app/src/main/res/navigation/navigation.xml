@@ -10,7 +10,7 @@
         android:label="fragment_title"
         tools:layout="@layout/fragment_title" >
         <action
-            android:id="@+id/action_titleFragment2_to_tutorialFragment"
+            android:id="@+id/action_titleFragment_to_tutorialFragment"
             app:destination="@id/tutorialFragment" />
     </fragment>
     <fragment
@@ -18,4 +18,9 @@
         android:name="gustavo.projects.dotaquiz.TutorialFragment"
         android:label="fragment_tutorial"
         tools:layout="@layout/fragment_tutorial" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="gustavo.projects.dotaquiz.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
 </navigation>
