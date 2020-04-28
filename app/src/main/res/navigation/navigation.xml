@@ -26,5 +26,21 @@
         android:id="@+id/gameFragment"
         android:name="gustavo.projects.dotaquiz.GameFragment"
         android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_gameFragment_to_endGameFragment"
+            app:destination="@id/endGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/endGameFragment"
+        android:name="gustavo.projects.dotaquiz.EndGameFragment"
+        android:label="fragment_end_game"
+        tools:layout="@layout/fragment_end_game" >
+        <action
+            android:id="@+id/action_endGameFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
+        <action
+            android:id="@+id/action_endGameFragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment" />
+    </fragment>
 </navigation>
