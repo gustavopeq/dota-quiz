@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import gustavo.projects.dotaquiz.databinding.FragmentTutorialBinding
 
 
@@ -16,6 +17,8 @@ class TutorialFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = DataBindingUtil.inflate<FragmentTutorialBinding>(inflater,R.layout.fragment_tutorial, container,false)
+
+        binding.tutorialStartGameBtn.setOnClickListener{it:View -> findNavController().navigate(R.id.action_tutorialFragment_to_gameFragment)}
 
         return binding.root
     }
