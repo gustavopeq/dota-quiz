@@ -6,7 +6,7 @@
     app:startDestination="@id/titleFragment">
     <fragment
         android:id="@+id/titleFragment"
-        android:name="gustavo.projects.dotaquiz.TitleFragment"
+        android:name="gustavo.projects.dotaquiz.pregame.TitleFragment"
         android:label="fragment_title"
         tools:layout="@layout/fragment_title" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/tutorialFragment"
-        android:name="gustavo.projects.dotaquiz.TutorialFragment"
+        android:name="gustavo.projects.dotaquiz.pregame.TutorialFragment"
         android:label="fragment_tutorial"
         tools:layout="@layout/fragment_tutorial" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
-        android:name="gustavo.projects.dotaquiz.GameFragment"
+        android:name="gustavo.projects.dotaquiz.game.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/endGameFragment"
-        android:name="gustavo.projects.dotaquiz.EndGameFragment"
+        android:name="gustavo.projects.dotaquiz.endgame.EndGameFragment"
         android:label="fragment_end_game"
         tools:layout="@layout/fragment_end_game" >
         <action

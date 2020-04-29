@@ -1,4 +1,4 @@
-package gustavo.projects.dotaquiz
+package gustavo.projects.dotaquiz.endgame
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import gustavo.projects.dotaquiz.R
 import gustavo.projects.dotaquiz.databinding.FragmentEndGameBinding
 
 
@@ -16,7 +17,8 @@ class EndGameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentEndGameBinding>(inflater, R.layout.fragment_end_game, container, false)
+        val binding = DataBindingUtil.inflate<FragmentEndGameBinding>(inflater,
+            R.layout.fragment_end_game, container, false)
 
 
         binding.mainMenuBtn.setOnClickListener{findNavController().navigate(R.id.action_endGameFragment_to_titleFragment)}
