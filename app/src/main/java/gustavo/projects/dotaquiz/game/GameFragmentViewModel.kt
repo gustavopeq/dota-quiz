@@ -1,18 +1,23 @@
 package gustavo.projects.dotaquiz.game
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GameFragmentViewModel : ViewModel() {
 
     private lateinit var heroesMap: HashMap<String, Array<String>>
-    private  lateinit var heroesList: MutableSet<String>
+    private var heroesList: MutableSet<String>
 
-    lateinit var heroSelected: String
+    private val _heroSelected = MutableLiveData<String>()
+    val heroSelected: LiveData<String>
+        get() = _heroSelected
 
     init{
-        TODO("Create view model, starting on heroes hashmap")
+        _heroSelected.value = ""
 
         createHeroesMap()
+        nextHero()
 
         heroesList = heroesMap.keys
     }
@@ -30,8 +35,12 @@ class GameFragmentViewModel : ViewModel() {
         if(heroesList.isNotEmpty()){
             heroesList.shuffled()
 
-            heroSelected = heroesList.elementAt(0)
-            heroesList.remove(0)
+            _heroSelected.value = heroesList.elementAt(0)
+            heroesList.remove(_heroSelected.toString())
         }
+    }
+
+    fun onCorrect(){
+        nextHero()
     }
 }

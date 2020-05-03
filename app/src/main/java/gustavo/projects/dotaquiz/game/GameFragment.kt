@@ -13,6 +13,8 @@ import gustavo.projects.dotaquiz.databinding.FragmentGameBinding
 
 class GameFragment : Fragment() {
 
+    
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
