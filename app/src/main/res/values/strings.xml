@@ -2,4 +2,5 @@
     <string name="app_name">DotaQuiz</string>
 
     <string name="dotaquizTitle">DotaQuiz</string>
+    <string name="stringFormat">%s</string>
 </resources>

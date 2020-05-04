@@ -1,5 +1,6 @@
 package gustavo.projects.dotaquiz.game
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,7 +8,7 @@ import androidx.lifecycle.ViewModel
 class GameFragmentViewModel : ViewModel() {
 
     private lateinit var heroesMap: HashMap<String, Array<String>>
-    private var heroesList: MutableSet<String>
+    private var heroesList = mutableListOf<String>()
 
     private val _heroSelected = MutableLiveData<String>()
     val heroSelected: LiveData<String>
@@ -17,12 +18,14 @@ class GameFragmentViewModel : ViewModel() {
         _heroSelected.value = ""
 
         createHeroesMap()
+        createHeroesList()
         nextHero()
 
-        heroesList = heroesMap.keys
     }
 
+    //The HeroesMap stores each Hero name as a key, and the forbidden words related to that hero as values. The map should not be changed during game
     private fun createHeroesMap(){
+        heroesMap = hashMapOf()
         heroesMap["Sniper"] = arrayOf("Headshot", "Dwarf", "Gun", "Shooter")
         heroesMap["Drow Ranger"] = arrayOf("Ice", "Archer", "Slow", "Aura")
         heroesMap["Gyrocopter"] = arrayOf("Helicopter", "Missile", "Stun", "Explosion")
@@ -31,12 +34,15 @@ class GameFragmentViewModel : ViewModel() {
         heroesMap["Antimage"] = arrayOf("Mage", "Blade", "Blink", "Resistant")
     }
 
+    //The HeroesList gets the name of each hero available, and is used during the game. Every time a hero is picked, it is removed from this list
+    private fun createHeroesList(){
+        heroesList = heroesMap.keys.toMutableList()
+        heroesList.shuffle()
+    }
+
     private  fun nextHero(){
         if(heroesList.isNotEmpty()){
-            heroesList.shuffled()
-
-            _heroSelected.value = heroesList.elementAt(0)
-            heroesList.remove(_heroSelected.toString())
+            _heroSelected.value = heroesList.removeAt(0)
         }
     }
 
