@@ -25,6 +25,7 @@ class GameFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(GameFragmentViewModel::class.java)
         binding.gameViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.wrongBtn.setOnClickListener{findNavController().navigate(R.id.action_gameFragment_to_endGameFragment)}
 
