@@ -1,11 +1,20 @@
 package gustavo.projects.dotaquiz.game
 
+import android.os.CountDownTimer
+import android.text.format.DateUtils
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 
 class GameFragmentViewModel : ViewModel() {
+
+    companion object{
+        private const val TIMER_DONE = 0L
+        private const val ONE_SECOND = 1000L
+        private const val COUNTDOWN_TIME = 60000L
+    }
 
     private lateinit var heroesMap: HashMap<String, Array<String>>
     private var heroesList = mutableListOf<String>()
@@ -14,13 +23,41 @@ class GameFragmentViewModel : ViewModel() {
     val heroSelected: LiveData<String>
         get() = _heroSelected
 
+    private val _currentTimer = MutableLiveData<Long>()
+    val currentTimer: LiveData<Long>
+        get() = _currentTimer
+
+    val currentTimerString = Transformations.map(currentTimer) { time ->
+        DateUtils.formatElapsedTime(time)
+    }
+
+    private val timer: CountDownTimer
+
     init{
         _heroSelected.value = ""
+
+        timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND){
+            override fun onTick(millisUntilFinished: Long) {
+                _currentTimer.value = millisUntilFinished/ONE_SECOND
+            }
+
+            override fun onFinish() {
+                _currentTimer.value = TIMER_DONE
+                // END GAME IMPLEMENTATION ...
+            }
+        }
+
+        timer.start()
 
         createHeroesMap()
         createHeroesList()
         nextHero()
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        timer.cancel()
     }
 
     //The HeroesMap stores each Hero name as a key, and the forbidden words related to that hero as values. The map should not be changed during game
@@ -40,7 +77,7 @@ class GameFragmentViewModel : ViewModel() {
         heroesList.shuffle()
     }
 
-    private  fun nextHero(){
+    private fun nextHero(){
         if(heroesList.isNotEmpty()){
             _heroSelected.value = heroesList.removeAt(0)
         }
