@@ -23,6 +23,11 @@ class GameFragmentViewModel : ViewModel() {
     val heroSelected: LiveData<String>
         get() = _heroSelected
 
+    private val _forbiddenWordsList = MutableLiveData<Array<String>>()
+    val forbiddenWordsList: LiveData<Array<String>>
+        get() = _forbiddenWordsList
+
+
     private val _currentTimer = MutableLiveData<Long>()
     val currentTimer: LiveData<Long>
         get() = _currentTimer
@@ -80,6 +85,13 @@ class GameFragmentViewModel : ViewModel() {
     private fun nextHero(){
         if(heroesList.isNotEmpty()){
             _heroSelected.value = heroesList.removeAt(0)
+            updateForbiddenWordsList()
+        }
+    }
+
+    private fun updateForbiddenWordsList(){
+        if(heroesMap.containsKey(_heroSelected.value)){
+            _forbiddenWordsList.value = heroesMap[_heroSelected.value]
         }
     }
 
