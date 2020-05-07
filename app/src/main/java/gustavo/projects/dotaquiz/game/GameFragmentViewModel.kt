@@ -14,6 +14,8 @@ class GameFragmentViewModel : ViewModel() {
         private const val TIMER_DONE = 0L
         private const val ONE_SECOND = 1000L
         private const val COUNTDOWN_TIME = 60000L
+
+        private const val BASE_SCORE_POINTS = 10
     }
 
     private lateinit var heroesMap: HashMap<String, Array<String>>
@@ -27,7 +29,6 @@ class GameFragmentViewModel : ViewModel() {
     val forbiddenWordsList: LiveData<Array<String>>
         get() = _forbiddenWordsList
 
-
     private val _currentTimer = MutableLiveData<Long>()
     val currentTimer: LiveData<Long>
         get() = _currentTimer
@@ -38,8 +39,14 @@ class GameFragmentViewModel : ViewModel() {
 
     private val timer: CountDownTimer
 
+    private val _score = MutableLiveData<Int>()
+    val score: LiveData<Int>
+        get() = _score
+
+
     init{
         _heroSelected.value = ""
+        _score.value = 0
 
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND){
             override fun onTick(millisUntilFinished: Long) {
@@ -95,7 +102,14 @@ class GameFragmentViewModel : ViewModel() {
         }
     }
 
+    private fun addPointsToScore(){
+        val timerBonusMultiplier = _currentTimer.value!!
+        _score.value = _score.value?.plus((BASE_SCORE_POINTS * timerBonusMultiplier.toInt()))
+    }
+
     fun onCorrect(){
+        addPointsToScore()
         nextHero()
     }
+
 }
