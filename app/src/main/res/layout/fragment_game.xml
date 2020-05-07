@@ -112,6 +112,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_red_dark"
             android:text="Wrong"
+            android:onClick="@{() -> gameViewModel.onWrong()}"
             app:layout_constraintBottom_toBottomOf="@+id/correctBtn"
             app:layout_constraintEnd_toStartOf="@+id/correctBtn"
             app:layout_constraintHorizontal_bias="0.5"

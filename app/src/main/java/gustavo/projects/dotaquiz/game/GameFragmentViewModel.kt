@@ -112,4 +112,8 @@ class GameFragmentViewModel : ViewModel() {
         nextHero()
     }
 
+    fun onWrong(){
+        nextHero()
+    }
+
 }
