@@ -6,12 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import gustavo.projects.dotaquiz.R
 import gustavo.projects.dotaquiz.databinding.FragmentEndGameBinding
 
 
 class EndGameFragment : Fragment() {
+
+    lateinit var viewModel: EndGameViewModel
+    lateinit var viewModelFactory: EndGameViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,11 +26,30 @@ class EndGameFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentEndGameBinding>(inflater,
             R.layout.fragment_end_game, container, false)
 
+        viewModelFactory = EndGameViewModelFactory(EndGameFragmentArgs.fromBundle(arguments!!).finalScore)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(EndGameViewModel::class.java)
 
-        binding.mainMenuBtn.setOnClickListener{findNavController().navigate(R.id.action_endGameFragment_to_titleFragment)}
-        binding.playAgainButton.setOnClickListener{findNavController().navigate(R.id.action_endGameFragment_to_tutorialFragment)}
+        binding.endGameViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.destinationID.observe(viewLifecycleOwner, Observer<Int> {destinationID ->
+            when(destinationID){
+                1 -> navigateToMainMenu()
+                2 -> navigateToPreGame()
+            }
+        })
 
         return binding.root
+    }
+
+    private fun navigateToMainMenu() {
+        viewModel.onDestinationChangeComplete()
+        NavHostFragment.findNavController(this).navigate(EndGameFragmentDirections.actionEndGameFragmentToTitleFragment())
+    }
+
+    private fun navigateToPreGame() {
+        viewModel.onDestinationChangeComplete()
+        NavHostFragment.findNavController(this).navigate(EndGameFragmentDirections.actionEndGameFragmentToTutorialFragment())
     }
 
 }
