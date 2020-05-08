@@ -42,5 +42,9 @@
         <action
             android:id="@+id/action_endGameFragment_to_tutorialFragment"
             app:destination="@id/tutorialFragment" />
+        <argument
+            android:name="finalScore"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

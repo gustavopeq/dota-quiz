@@ -43,10 +43,18 @@ class GameFragmentViewModel : ViewModel() {
     val score: LiveData<Int>
         get() = _score
 
+    private val _eventGameFinish = MutableLiveData<Boolean>()
+    val eventGameFinish: LiveData<Boolean>
+        get() = _eventGameFinish
+
+    private val _listOfHeroesEmpty = MutableLiveData<Boolean>()
+    val listOfHeroesEmpty: LiveData<Boolean>
+        get() = _listOfHeroesEmpty
 
     init{
         _heroSelected.value = ""
         _score.value = 0
+        _eventGameFinish.value = false
 
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND){
             override fun onTick(millisUntilFinished: Long) {
@@ -55,7 +63,7 @@ class GameFragmentViewModel : ViewModel() {
 
             override fun onFinish() {
                 _currentTimer.value = TIMER_DONE
-                // END GAME IMPLEMENTATION ...
+                onGameFinish()
             }
         }
 
@@ -93,6 +101,9 @@ class GameFragmentViewModel : ViewModel() {
         if(heroesList.isNotEmpty()){
             _heroSelected.value = heroesList.removeAt(0)
             updateForbiddenWordsList()
+        }else{
+            _listOfHeroesEmpty.value = true
+            onGameFinish()
         }
     }
 
@@ -107,6 +118,15 @@ class GameFragmentViewModel : ViewModel() {
         _score.value = _score.value?.plus((BASE_SCORE_POINTS * timerBonusMultiplier.toInt()))
     }
 
+    private fun onGameFinish(){
+        _eventGameFinish.value = true
+    }
+
+    // This method is important in order to avoid the onGameFinish runs again if there is any configuration change.
+    fun onGameFinishComplete(){
+        _eventGameFinish.value = false
+    }
+
     fun onCorrect(){
         addPointsToScore()
         nextHero()
@@ -115,5 +135,7 @@ class GameFragmentViewModel : ViewModel() {
     fun onWrong(){
         nextHero()
     }
+
+
 
 }
