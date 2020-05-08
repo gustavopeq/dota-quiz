@@ -10,6 +10,7 @@ class EndGameViewModel(finalScore: Int) : ViewModel(){
     val finalScore: LiveData<Int>
         get() = _finalScore
 
+    // Destination ID defines the navigation route to be followed. 1 = TitleFragment / 2 = TutorialFragment
     private val _destinationID = MutableLiveData<Int>()
     val destinationID: LiveData<Int>
         get() = _destinationID

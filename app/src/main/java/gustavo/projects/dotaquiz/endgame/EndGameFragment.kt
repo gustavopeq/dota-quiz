@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import gustavo.projects.dotaquiz.R
 import gustavo.projects.dotaquiz.databinding.FragmentEndGameBinding
 
