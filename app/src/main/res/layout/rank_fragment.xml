@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="96dp"
-            android:text="@{@string/format_Ranking(1, viewModel.topPlayersScoreString[0])}"
+            android:text='@{@string/format_Ranking(1, viewModel.topPlayersScoreString[0] ?? "--------------------")}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="@{@string/format_Ranking(2, viewModel.topPlayersScoreString[1])}"
+            android:text='@{@string/format_Ranking(2, viewModel.topPlayersScoreString[1] ?? "--------------------")}'
             app:layout_constraintStart_toStartOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/textView9"
             tools:text="2- " />
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="@{@string/format_Ranking(3, viewModel.topPlayersScoreString[2])}"
+            android:text='@{@string/format_Ranking(3, viewModel.topPlayersScoreString[2] ?? "--------------------")}'
             app:layout_constraintStart_toStartOf="@+id/textView11"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
             tools:text="3- " />
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="@{@string/format_Ranking(4, viewModel.topPlayersScoreString[3])}"
+            android:text='@{@string/format_Ranking(4, viewModel.topPlayersScoreString[3] ?? "--------------------")}'
             app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toBottomOf="@+id/textView12"
             tools:text="4- " />
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="@{@string/format_Ranking(5, viewModel.topPlayersScoreString[4])}"
+            android:text='@{@string/format_Ranking(5, viewModel.topPlayersScoreString[4] ?? "--------------------")}'
             app:layout_constraintStart_toStartOf="@+id/textView13"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             tools:text="5- " />
