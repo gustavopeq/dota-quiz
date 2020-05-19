@@ -25,10 +25,8 @@ class RankFragmentViewModel(val database: RankDatabaseDao) : ViewModel() {
     private fun formatTopPlayerScoreToString(topPlayersScore: List<PlayerScore>) : MutableList<String>{
         var listFormated = mutableListOf<String>()
 
-        var count = 1
         for(player in topPlayersScore){
-            listFormated.add(count.toString() + "- " + player.playerName.toString() + " ----> " + player.playerBestScore.toString())
-            count++
+            listFormated.add(player.playerName.toString() + " ----> " + player.playerBestScore.toString())
         }
 
         return listFormated

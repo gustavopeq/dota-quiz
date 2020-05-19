@@ -4,4 +4,5 @@
     <string name="dotaquizTitle">DotaQuiz</string>
     <string name="format_Score">Score: %d</string>
     <string name="format_Final_Score">Final Score: %d</string>
+    <string name="format_Ranking">%d- %s</string>
 </resources>
