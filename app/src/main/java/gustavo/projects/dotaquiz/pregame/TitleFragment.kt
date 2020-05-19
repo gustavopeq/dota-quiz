@@ -22,6 +22,8 @@ class TitleFragment : Fragment() {
 
         binding.startGameBtn.setOnClickListener{findNavController().navigate(R.id.action_titleFragment_to_tutorialFragment)}
 
+        binding.rankingBtn.setOnClickListener{findNavController().navigate(R.id.action_titleFragment_to_rankFragment)}
+
         return binding.root
     }
 
