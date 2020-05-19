@@ -1,5 +1,6 @@
 package gustavo.projects.dotaquiz.model
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -20,6 +21,7 @@ interface RankDatabaseDao{
     @Query("SELECT * FROM rank_players_score WHERE player_name = :key")
     fun getByName(key: String): PlayerScore
 
-    @Query("SELECT * FROM rank_players_score ORDER BY player_bestScore LIMIT 5")
-    fun getTop5(): Array<PlayerScore>
+    // get the top N values. N is passed as parameter
+    @Query("SELECT * FROM rank_players_score ORDER BY player_bestScore desc LIMIT :numberOfElements")
+    fun getTopN(numberOfElements: Int): LiveData<List<PlayerScore>>
 }

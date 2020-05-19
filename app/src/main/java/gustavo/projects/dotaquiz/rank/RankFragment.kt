@@ -30,6 +30,9 @@ class RankFragment : Fragment() {
 
         val viewModel = ViewModelProviders.of(this, rankViewModelFactory).get(RankFragmentViewModel::class.java)
 
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
         return binding.root
     }
 
