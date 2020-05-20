@@ -22,8 +22,8 @@
         android:label="fragment_tutorial"
         tools:layout="@layout/fragment_tutorial" >
         <action
-            android:id="@+id/action_tutorialFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
+            android:id="@+id/action_tutorialFragment_to_teamSelection"
+            app:destination="@id/teamSelection" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -55,4 +55,13 @@
         android:name="gustavo.projects.dotaquiz.rank.RankFragment"
         android:label="RankFragment"
         tools:layout="@layout/rank_fragment" />
+    <fragment
+        android:id="@+id/teamSelection"
+        android:name="gustavo.projects.dotaquiz.pregame.teamSelection.TeamSelection"
+        android:label="TeamSelection"
+        tools:layout="@layout/team_selection_fragment" >
+        <action
+            android:id="@+id/action_teamSelection_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
 </navigation>

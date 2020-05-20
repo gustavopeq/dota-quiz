@@ -21,7 +21,7 @@ class TutorialFragment : Fragment() {
             R.layout.fragment_tutorial, container,false)
 
         binding.tutorialStartGameBtn.setOnClickListener{it:View -> findNavController().navigate(
-            R.id.action_tutorialFragment_to_gameFragment
+            R.id.action_tutorialFragment_to_teamSelection
         )}
 
         return binding.root
