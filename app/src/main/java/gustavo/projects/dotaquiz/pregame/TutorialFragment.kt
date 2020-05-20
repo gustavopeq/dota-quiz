@@ -20,9 +20,7 @@ class TutorialFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentTutorialBinding>(inflater,
             R.layout.fragment_tutorial, container,false)
 
-        binding.tutorialStartGameBtn.setOnClickListener{it:View -> findNavController().navigate(
-            R.id.action_tutorialFragment_to_teamSelection
-        )}
+        binding.tutorialStartGameBtn.setOnClickListener { findNavController().navigate(R.id.action_tutorialFragment_to_teamSelection)}
 
         return binding.root
     }

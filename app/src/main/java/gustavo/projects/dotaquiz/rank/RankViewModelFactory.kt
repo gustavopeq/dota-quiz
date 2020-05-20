@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import gustavo.projects.dotaquiz.model.RankDatabaseDao
 
+@Suppress("UNCHECKED_CAST")
 class RankViewModelFactory(private val dataSource: RankDatabaseDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(RankFragmentViewModel::class.java)){

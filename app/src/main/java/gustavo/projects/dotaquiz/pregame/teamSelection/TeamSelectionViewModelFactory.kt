@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import gustavo.projects.dotaquiz.model.RankDatabaseDao
 
+@Suppress("UNCHECKED_CAST")
 class TeamSelectionViewModelFactory(private val database: RankDatabaseDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(TeamSelectionViewModel::class.java)){

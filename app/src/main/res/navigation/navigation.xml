@@ -33,6 +33,10 @@
         <action
             android:id="@+id/action_gameFragment_to_endGameFragment"
             app:destination="@id/endGameFragment" />
+        <argument
+            android:name="teamName"
+            app:argType="string"
+            android:defaultValue="Empty" />
     </fragment>
     <fragment
         android:id="@+id/endGameFragment"

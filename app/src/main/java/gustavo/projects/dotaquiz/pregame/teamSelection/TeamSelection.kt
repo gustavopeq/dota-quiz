@@ -9,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 
 import gustavo.projects.dotaquiz.R
 import gustavo.projects.dotaquiz.databinding.TeamSelectionFragmentBinding
@@ -50,7 +53,19 @@ class TeamSelection : Fragment() {
 
         binding.confirmBtn.setOnClickListener { viewModel.createNewTeam(binding.teamNameEditText.text.toString())  }
 
+        viewModel.canStartGame.observe(viewLifecycleOwner, Observer<Boolean> { canStartGame ->
+            if(canStartGame) startGame()
+        })
+
         return binding.root
+    }
+
+    private fun startGame() {
+
+        val action = TeamSelectionDirections.actionTeamSelectionToGameFragment()
+        action.teamName = viewModel.teamSelectedName
+
+        NavHostFragment.findNavController(this).navigate(action)
     }
 
 }

@@ -1,6 +1,8 @@
 package gustavo.projects.dotaquiz.pregame.teamSelection
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import gustavo.projects.dotaquiz.model.PlayerScore
 import gustavo.projects.dotaquiz.model.RankDatabaseDao
@@ -13,12 +15,17 @@ class TeamSelectionViewModel(val database: RankDatabaseDao) : ViewModel() {
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private lateinit var teamSelectedName: String
+    lateinit var teamSelectedName: String
+
+    private val _canStartGame = MutableLiveData<Boolean>()
+    val canStartGame: LiveData<Boolean>
+        get() = _canStartGame
 
     fun createNewTeam(teamName: String) {
         uiScope.launch {
             if(insertTeam(teamName)) {
                 teamSelectedName = teamName
+                _canStartGame.value = true
             }else{
                 Log.i("print", "Team already exist... Dialog message needs to popup now")
             }
@@ -34,7 +41,7 @@ class TeamSelectionViewModel(val database: RankDatabaseDao) : ViewModel() {
                 database.insert(newTeam)
             }catch (e: Exception){
                 // Team already exist in the database
-                Log.i("print", e.message)
+                Log.i("print", e.message!!)
 
                 return@withContext false
             }
