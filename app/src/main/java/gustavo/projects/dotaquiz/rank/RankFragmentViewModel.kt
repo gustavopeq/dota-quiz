@@ -33,34 +33,6 @@ class RankFragmentViewModel(val database: RankDatabaseDao) : ViewModel() {
         return listFormated
     }
 
-    init {
-        // Testing only
-        uiScope.launch {
-            var newPlayer = PlayerScore(0,"Gustavo", 1500)
-
-            try {
-                insert(newPlayer)
-            }catch (e: Exception){
-                Log.i("print", e.message)
-            }
-        }
-    }
-
-    private suspend fun insert(newPlayerScore: PlayerScore){
-        withContext(Dispatchers.IO){
-            database.insert(newPlayerScore)
-        }
-    }
-
-    // Testing only
-    private suspend fun getPlayer(name: String) : PlayerScore{
-        return withContext(Dispatchers.IO){
-            var result = database.getByName(name)
-
-            result
-        }
-    }
-
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

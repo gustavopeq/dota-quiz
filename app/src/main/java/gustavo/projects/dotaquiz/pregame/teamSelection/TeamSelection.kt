@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 
 import gustavo.projects.dotaquiz.R
 import gustavo.projects.dotaquiz.databinding.TeamSelectionFragmentBinding
+import gustavo.projects.dotaquiz.model.RankDatabase
 
 class TeamSelection : Fragment() {
 
@@ -23,6 +24,31 @@ class TeamSelection : Fragment() {
     ): View? {
 
         val binding = DataBindingUtil.inflate<TeamSelectionFragmentBinding>(inflater, R.layout.team_selection_fragment, container, false)
+
+        val application = requireNotNull(this.activity).application
+        val database = RankDatabase.getInstance(application).rankDatabaseDao
+
+        val viewModelFactory = TeamSelectionViewModelFactory(database)
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(TeamSelectionViewModel::class.java)
+
+        binding.confirmBtn.isEnabled = false
+
+        binding.teamNameEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                // Nothing to implement
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Nothing to implement
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.confirmBtn.isEnabled = !s.isNullOrBlank()
+            }
+        })
+
+        binding.confirmBtn.setOnClickListener { viewModel.createNewTeam(binding.teamNameEditText.text.toString())  }
 
         return binding.root
     }

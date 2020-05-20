@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="teamSelectionViewModel"
+            type="gustavo.projects.dotaquiz.pregame.teamSelection.TeamSelectionViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,7 +59,6 @@
             android:id="@+id/confirmBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="false"
             android:text="Confirm"
             app:layout_constraintEnd_toEndOf="@+id/teamNameEditText"
             app:layout_constraintStart_toStartOf="@+id/teamNameEditText"
