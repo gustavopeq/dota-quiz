@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [PlayerScore::class], version = 1, exportSchema = false)
+@Database(entities = [PlayerScore::class], version = 2, exportSchema = false)
 public abstract class RankDatabase : RoomDatabase() {
 
     abstract val rankDatabaseDao: RankDatabaseDao

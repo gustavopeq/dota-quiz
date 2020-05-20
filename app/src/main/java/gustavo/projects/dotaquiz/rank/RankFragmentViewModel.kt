@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import gustavo.projects.dotaquiz.model.PlayerScore
 import gustavo.projects.dotaquiz.model.RankDatabaseDao
 import kotlinx.coroutines.*
+import java.lang.Exception
 
 class RankFragmentViewModel(val database: RankDatabaseDao) : ViewModel() {
 
@@ -35,8 +36,13 @@ class RankFragmentViewModel(val database: RankDatabaseDao) : ViewModel() {
     init {
         // Testing only
         uiScope.launch {
-            //var newPlayer = PlayerScore(0,"Joao", 500)
-            //insert(newPlayer)
+            var newPlayer = PlayerScore(0,"Gustavo", 1500)
+
+            try {
+                insert(newPlayer)
+            }catch (e: Exception){
+                Log.i("print", e.message)
+            }
         }
     }
 
