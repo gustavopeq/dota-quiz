@@ -13,22 +13,23 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 
 import gustavo.projects.dotaquiz.R
 import gustavo.projects.dotaquiz.databinding.TeamSelectionFragmentBinding
 import gustavo.projects.dotaquiz.model.RankDatabase
+import gustavo.projects.dotaquiz.model.TeamInfo
 
 class TeamSelection : Fragment() {
 
     private lateinit var viewModel: TeamSelectionViewModel
+    private lateinit var binding: TeamSelectionFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = DataBindingUtil.inflate<TeamSelectionFragmentBinding>(inflater, R.layout.team_selection_fragment, container, false)
+        binding = DataBindingUtil.inflate<TeamSelectionFragmentBinding>(inflater, R.layout.team_selection_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
         val database = RankDatabase.getInstance(application).rankDatabaseDao
@@ -59,8 +60,9 @@ class TeamSelection : Fragment() {
             if(canStartGame) startGame()
         })
 
-
-        displayExistingTeamDialog("Test", 100)
+        viewModel.canShowExistentTeamDialog.observe(viewLifecycleOwner, Observer<Boolean> { canShowDialog ->
+            if(canShowDialog) showExistingTeamDialog(viewModel.teamSelected)
+        })
 
         return binding.root
     }
@@ -68,25 +70,28 @@ class TeamSelection : Fragment() {
     private fun startGame() {
 
         val action = TeamSelectionDirections.actionTeamSelectionToGameFragment()
-        action.teamName = viewModel.teamSelectedName
+        action.teamName = viewModel.teamSelected.teamName
 
         NavHostFragment.findNavController(this).navigate(action)
     }
 
-    private fun displayExistingTeamDialog(teamName: String, teamBestScore: Int) {
+    private fun showExistingTeamDialog(teamInfo: TeamInfo) {
 
         val builder = AlertDialog.Builder(this.activity)
         builder.setTitle("Existent Team!")
-        builder.setMessage("The team $teamName already exist and has $teamBestScore points. Do you want to use this team or choose another?")
+        builder.setMessage("The team ${teamInfo.teamName} already exist and has ${teamInfo.teamBestScore} points. Do you want to use this team or choose another?")
         builder.setPositiveButton("Use this") { dialog: DialogInterface?, which: Int ->
-            // nothing
+            startGame()
         }
 
         builder.setNegativeButton("Choose another") { dialog: DialogInterface?, which: Int ->
-            // nothing
+            closeExistingTeamDialog()
         }
 
         builder.show()
     }
+
+    private fun closeExistingTeamDialog() = binding.teamNameEditText.text.clear()
+
 
 }
