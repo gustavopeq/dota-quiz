@@ -10,18 +10,18 @@ import androidx.room.Update
 interface RankDatabaseDao{
 
     @Insert
-    fun insert(playerScore: PlayerScore)
+    fun insert(teamInfo: TeamInfo)
 
     @Update
-    fun update(playerScore: PlayerScore)
+    fun update(teamInfo: TeamInfo)
 
-    @Query("SELECT * FROM rank_players_score WHERE playerId = :key")
-    fun getById(key: Int): PlayerScore?
+    @Query("SELECT * FROM rank_teams_score WHERE teamId = :key")
+    fun getById(key: Int): TeamInfo?
 
-    @Query("SELECT * FROM rank_players_score WHERE player_name = :key")
-    fun getByName(key: String): PlayerScore
+    @Query("SELECT * FROM rank_teams_score WHERE team_name = :key")
+    fun getByName(key: String): TeamInfo
 
     // get the top N values. N is passed as parameter
-    @Query("SELECT * FROM rank_players_score ORDER BY player_bestScore desc LIMIT :numberOfElements")
-    fun getTopN(numberOfElements: Int): LiveData<List<PlayerScore>>
+    @Query("SELECT * FROM rank_teams_score ORDER BY team_bestScore desc LIMIT :numberOfElements")
+    fun getTopN(numberOfElements: Int): LiveData<List<TeamInfo>>
 }

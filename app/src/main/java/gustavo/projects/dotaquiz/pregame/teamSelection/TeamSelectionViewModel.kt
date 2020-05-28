@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import gustavo.projects.dotaquiz.model.PlayerScore
+import gustavo.projects.dotaquiz.model.TeamInfo
 import gustavo.projects.dotaquiz.model.RankDatabaseDao
 import kotlinx.coroutines.*
 import java.lang.Exception
@@ -35,7 +35,7 @@ class TeamSelectionViewModel(val database: RankDatabaseDao) : ViewModel() {
     // True is returned confirming that the new team was inserted. If false is returned, means that this teamName already exists in the Database
     private suspend fun insertTeam(teamName: String) : Boolean{
         return withContext(Dispatchers.IO) {
-            var newTeam = PlayerScore(0, teamName, 0)
+            var newTeam = TeamInfo(0, teamName, 0)
 
             try {
                 database.insert(newTeam)

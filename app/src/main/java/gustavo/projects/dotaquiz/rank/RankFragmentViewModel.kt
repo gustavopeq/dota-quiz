@@ -1,13 +1,10 @@
 package gustavo.projects.dotaquiz.rank
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import gustavo.projects.dotaquiz.model.PlayerScore
+import gustavo.projects.dotaquiz.model.TeamInfo
 import gustavo.projects.dotaquiz.model.RankDatabaseDao
 import kotlinx.coroutines.*
-import java.lang.Exception
 
 class RankFragmentViewModel(val database: RankDatabaseDao) : ViewModel() {
 
@@ -23,11 +20,11 @@ class RankFragmentViewModel(val database: RankDatabaseDao) : ViewModel() {
         formatTopPlayerScoreToString(topPlayersScore)
     }
 
-    private fun formatTopPlayerScoreToString(topPlayersScore: List<PlayerScore>) : MutableList<String>{
+    private fun formatTopPlayerScoreToString(topPlayersScore: List<TeamInfo>) : MutableList<String>{
         var listFormated = mutableListOf<String>()
 
         for(player in topPlayersScore){
-            listFormated.add(player.playerName.toString() + " ----> " + player.playerBestScore.toString())
+            listFormated.add(player.teamName.toString() + " ----> " + player.teamBestScore.toString())
         }
 
         return listFormated
