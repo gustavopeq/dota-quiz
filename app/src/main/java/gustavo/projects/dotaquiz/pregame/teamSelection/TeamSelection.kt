@@ -1,5 +1,7 @@
 package gustavo.projects.dotaquiz.pregame.teamSelection
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.text.Editable
@@ -57,6 +59,9 @@ class TeamSelection : Fragment() {
             if(canStartGame) startGame()
         })
 
+
+        displayExistingTeamDialog("Test", 100)
+
         return binding.root
     }
 
@@ -66,6 +71,22 @@ class TeamSelection : Fragment() {
         action.teamName = viewModel.teamSelectedName
 
         NavHostFragment.findNavController(this).navigate(action)
+    }
+
+    private fun displayExistingTeamDialog(teamName: String, teamBestScore: Int) {
+
+        val builder = AlertDialog.Builder(this.activity)
+        builder.setTitle("Existent Team!")
+        builder.setMessage("The team $teamName already exist and has $teamBestScore points. Do you want to use this team or choose another?")
+        builder.setPositiveButton("Use this") { dialog: DialogInterface?, which: Int ->
+            // nothing
+        }
+
+        builder.setNegativeButton("Choose another") { dialog: DialogInterface?, which: Int ->
+            // nothing
+        }
+
+        builder.show()
     }
 
 }
