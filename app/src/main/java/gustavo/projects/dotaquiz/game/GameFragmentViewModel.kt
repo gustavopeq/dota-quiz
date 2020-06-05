@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 
-class GameFragmentViewModel : ViewModel() {
+class GameFragmentViewModel(teamNameArg: String) : ViewModel() {
 
     companion object{
         private const val TIMER_DONE = 0L
@@ -51,9 +51,14 @@ class GameFragmentViewModel : ViewModel() {
     val listOfHeroesEmpty: LiveData<Boolean>
         get() = _listOfHeroesEmpty
 
+    private val _teamName = MutableLiveData<String>()
+    val teamName: LiveData<String>
+        get() = _teamName
+
     init{
         _heroSelected.value = ""
         _score.value = 0
+        _teamName.value = teamNameArg
         _eventGameFinish.value = false
 
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND){

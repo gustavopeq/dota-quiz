@@ -38,7 +38,21 @@
             app:layout_constraintHorizontal_bias="0.50"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView16"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintVertical_bias="0.25"
+            tools:text="Your final score was: 00" />
+
+        <TextView
+            android:id="@+id/bestScoreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/format_Team_Best_Score(endGameViewModel.teamName, endGameViewModel.teamInfoLiveData.teamBestScore)}"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/playAgainButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/finalScoreTextView"
+            app:layout_constraintVertical_bias="0.35"
+            tools:text="TeamName Best score is: 00" />
 
         <Button
             android:id="@+id/playAgainButton"

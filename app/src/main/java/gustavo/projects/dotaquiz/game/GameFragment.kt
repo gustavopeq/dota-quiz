@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.navArgs
 import gustavo.projects.dotaquiz.R
 import gustavo.projects.dotaquiz.databinding.FragmentGameBinding
 
@@ -25,7 +26,9 @@ class GameFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentGameBinding>(inflater,
             R.layout.fragment_game,container,false)
 
-        viewModel = ViewModelProviders.of(this).get(GameFragmentViewModel::class.java)
+        val viewModelFactory = GameFragmentViewModelFactory(GameFragmentArgs.fromBundle(arguments!!).teamName)
+        viewModel = ViewModelProviders.of(this,viewModelFactory).get(GameFragmentViewModel::class.java)
+
         binding.gameViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -47,6 +50,7 @@ class GameFragment : Fragment() {
 
         val action = GameFragmentDirections.actionGameFragmentToEndGameFragment()
         action.finalScore = viewModel.score.value?:0
+        action.teamName = viewModel.teamName.value?: "Empty"
 
         NavHostFragment.findNavController(this).navigate(action)
 

@@ -53,6 +53,10 @@
             android:name="finalScore"
             app:argType="integer"
             android:defaultValue="0" />
+        <argument
+            android:name="teamName"
+            app:argType="string"
+            android:defaultValue="Empty" />
     </fragment>
     <fragment
         android:id="@+id/rankFragment"
