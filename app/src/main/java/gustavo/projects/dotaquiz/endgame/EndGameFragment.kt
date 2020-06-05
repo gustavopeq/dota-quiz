@@ -39,14 +39,14 @@ class EndGameFragment : Fragment() {
         binding.endGameViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.destinationID.observe(viewLifecycleOwner, Observer<Int> {destinationID ->
+        viewModel.destinationID.observe(viewLifecycleOwner, Observer { destinationID ->
             when(destinationID){
                 1 -> navigateToMainMenu()
                 2 -> navigateToPreGame()
             }
         })
 
-        viewModel.endGameCompleted.observe(viewLifecycleOwner, Observer<Boolean> {endGameCompleted ->
+        viewModel.endGameCompleted.observe(viewLifecycleOwner, Observer { endGameCompleted ->
             if(!endGameCompleted) updateTeamInfo()
         })
 

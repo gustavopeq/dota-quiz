@@ -80,7 +80,6 @@ class EndGameViewModel(finalScoreArg: Int, teamNameArg: String, databaseArg: Ran
         return withContext(Dispatchers.IO) {
             return@withContext database.getByName(_teamName.value!!)
         }
-
     }
 
     private suspend fun insertTeamInfoIntoDatabase(teamInfo : TeamInfo) {
@@ -95,6 +94,7 @@ class EndGameViewModel(finalScoreArg: Int, teamNameArg: String, databaseArg: Ran
         }
     }
 
+    // It will prevent the fragment to try to update the team info in case the user rotate the cellphone
     private fun onEndGameCompleted() {
         _endGameCompleted.value = true
     }
