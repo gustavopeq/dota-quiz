@@ -29,7 +29,7 @@ class TeamSelection : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = DataBindingUtil.inflate<TeamSelectionFragmentBinding>(inflater, R.layout.team_selection_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.team_selection_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
         val database = RankDatabase.getInstance(application).rankDatabaseDao
@@ -67,14 +67,6 @@ class TeamSelection : Fragment() {
         return binding.root
     }
 
-    private fun startGame() {
-
-        val action = TeamSelectionDirections.actionTeamSelectionToGameFragment()
-        action.teamName = viewModel.teamSelected.teamName
-
-        NavHostFragment.findNavController(this).navigate(action)
-    }
-
     private fun showExistingTeamDialog(teamInfo: TeamInfo) {
 
         val builder = AlertDialog.Builder(this.activity)
@@ -89,6 +81,14 @@ class TeamSelection : Fragment() {
         }
 
         builder.show()
+    }
+
+    private fun startGame() {
+
+        val action = TeamSelectionDirections.actionTeamSelectionToGameFragment()
+        action.teamName = viewModel.teamSelected.teamName
+
+        NavHostFragment.findNavController(this).navigate(action)
     }
 
     private fun closeExistingTeamDialog() = binding.teamNameEditText.text.clear()
