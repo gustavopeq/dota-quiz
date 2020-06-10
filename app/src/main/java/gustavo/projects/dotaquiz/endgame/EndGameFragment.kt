@@ -43,6 +43,7 @@ class EndGameFragment : Fragment() {
             when(destinationID){
                 1 -> navigateToMainMenu()
                 2 -> navigateToPreGame()
+                3 -> navigateToRanking()
             }
         })
 
@@ -62,6 +63,11 @@ class EndGameFragment : Fragment() {
     private fun navigateToPreGame() {
         viewModel.onDestinationChangeComplete()
         NavHostFragment.findNavController(this).navigate(EndGameFragmentDirections.actionEndGameFragmentToTutorialFragment())
+    }
+
+    private fun navigateToRanking() {
+        viewModel.onDestinationChangeComplete()
+        NavHostFragment.findNavController(this).navigate(EndGameFragmentDirections.actionEndGameFragmentToRankFragment())
     }
 
     private fun updateTeamInfo() {

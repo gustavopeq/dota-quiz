@@ -10,6 +10,13 @@ import kotlinx.coroutines.*
 
 class EndGameViewModel(finalScoreArg: Int, teamNameArg: String, databaseArg: RankDatabaseDao) : ViewModel(){
 
+    companion object {
+        private const val CURRENT_FRAGMENT = 0
+        private const val TITLE_FRAGMENT = 1
+        private const val TUTORIAL_FRAGMENT = 2
+        private const val RANKING_FRAGMENT = 3
+    }
+
     private val viewModelJob= Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val database: RankDatabaseDao
@@ -42,16 +49,20 @@ class EndGameViewModel(finalScoreArg: Int, teamNameArg: String, databaseArg: Ran
         _endGameCompleted.value = false
     }
 
-    fun onMainMenuBtnEvent(){
-        _destinationID.value = 1
+    fun onMainMenuBtnEvent() {
+        _destinationID.value = TITLE_FRAGMENT
     }
 
-    fun onPlayAgainBtnEvent(){
-        _destinationID.value = 2
+    fun onPlayAgainBtnEvent() {
+        _destinationID.value = TUTORIAL_FRAGMENT
+    }
+
+    fun onRankingBtnEvent() {
+        _destinationID.value = RANKING_FRAGMENT
     }
 
     fun onDestinationChangeComplete(){
-        _destinationID.value = 0
+        _destinationID.value = CURRENT_FRAGMENT
     }
 
     fun onUpdateTeamInfo() {

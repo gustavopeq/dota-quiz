@@ -52,30 +52,41 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/finalScoreTextView"
             app:layout_constraintVertical_bias="0.35"
-            tools:text="TeamName Best score is: 00" />
+            tools:text="TeamName best score is: 00" />
 
         <Button
             android:id="@+id/playAgainButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
-            android:text="Play Again"
             android:onClick="@{() -> endGameViewModel.onPlayAgainBtnEvent()}"
+            android:text="Play Again"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/mainMenuBtn" />
+            app:layout_constraintStart_toEndOf="@+id/rankingBtn" />
 
         <Button
             android:id="@+id/mainMenuBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Main Menu"
             android:onClick="@{() -> endGameViewModel.onMainMenuBtnEvent()}"
+            android:text="Main Menu"
             app:layout_constraintBottom_toBottomOf="@+id/playAgainButton"
-            app:layout_constraintEnd_toStartOf="@+id/playAgainButton"
+            app:layout_constraintEnd_toStartOf="@+id/rankingBtn"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/rankingBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> endGameViewModel.onRankingBtnEvent()}"
+            android:text="Ranking"
+            app:layout_constraintBottom_toBottomOf="@+id/playAgainButton"
+            app:layout_constraintEnd_toStartOf="@+id/playAgainButton"
+            app:layout_constraintStart_toEndOf="@+id/mainMenuBtn" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
