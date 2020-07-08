@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/titleFragment"
         android:name="gustavo.projects.dotaquiz.pregame.TitleFragment"
-        android:label="fragment_title"
+        android:label="Welcome to Dota Quiz"
         tools:layout="@layout/fragment_title" >
         <action
             android:id="@+id/action_titleFragment_to_tutorialFragment"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/tutorialFragment"
         android:name="gustavo.projects.dotaquiz.pregame.TutorialFragment"
-        android:label="fragment_tutorial"
+        android:label="Tutorial"
         tools:layout="@layout/fragment_tutorial" >
         <action
             android:id="@+id/action_tutorialFragment_to_teamSelection"
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/gameFragment"
         android:name="gustavo.projects.dotaquiz.game.GameFragment"
-        android:label="fragment_game"
+        android:label="Game"
         tools:layout="@layout/fragment_game" >
         <action
             android:id="@+id/action_gameFragment_to_endGameFragment"
@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/endGameFragment"
         android:name="gustavo.projects.dotaquiz.endgame.EndGameFragment"
-        android:label="fragment_end_game"
+        android:label="End Game"
         tools:layout="@layout/fragment_end_game" >
         <action
             android:id="@+id/action_endGameFragment_to_titleFragment"
@@ -69,12 +69,12 @@
     <fragment
         android:id="@+id/rankFragment"
         android:name="gustavo.projects.dotaquiz.rank.RankFragment"
-        android:label="RankFragment"
+        android:label="Ranking"
         tools:layout="@layout/rank_fragment" />
     <fragment
         android:id="@+id/teamSelection"
         android:name="gustavo.projects.dotaquiz.pregame.teamSelection.TeamSelection"
-        android:label="TeamSelection"
+        android:label="Select your Team"
         tools:layout="@layout/team_selection_fragment" >
         <action
             android:id="@+id/action_teamSelection_to_gameFragment"
