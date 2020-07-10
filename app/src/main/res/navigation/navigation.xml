@@ -11,10 +11,18 @@
         tools:layout="@layout/fragment_title" >
         <action
             android:id="@+id/action_titleFragment_to_tutorialFragment"
-            app:destination="@id/tutorialFragment" />
+            app:destination="@id/tutorialFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_titleFragment_to_rankFragment"
-            app:destination="@id/rankFragment" />
+            app:destination="@id/rankFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/tutorialFragment"
@@ -23,7 +31,9 @@
         tools:layout="@layout/fragment_tutorial" >
         <action
             android:id="@+id/action_tutorialFragment_to_teamSelection"
-            app:destination="@id/teamSelection" />
+            app:destination="@id/teamSelection"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -33,6 +43,8 @@
         <action
             android:id="@+id/action_gameFragment_to_endGameFragment"
             app:destination="@id/endGameFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:popUpTo="@id/titleFragment"
             app:popUpToInclusive="false" />
         <argument
@@ -64,6 +76,8 @@
         <action
             android:id="@+id/action_endGameFragment_to_rankFragment"
             app:destination="@id/rankFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/titleFragment" />
     </fragment>
     <fragment
